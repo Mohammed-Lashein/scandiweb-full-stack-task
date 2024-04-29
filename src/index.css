@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  font-family: "raleway", sans-serif;
+  /* I have to note that after trial,  writing the font family
+  starting with a capital or small letter doesn't matter . The font 
+  will take effect anyway . */
+}
+
+:root {
+
+  /* navbar, Add to cart btn */
+  --fw-semiBold: 600;
+
+  /* products-category, out of stock */
+  --fw-regular: 400;
+
+  /* products-category */
+  --fs-products-category: 42px;
+
+
+  /* product name */
+  --fw-light: 300;
+  --fs-product-name: 16px;
+
+  /* product price */
+  --fw-medium: 500;
+  --fs-product-price: 18px;
+
+  /* out of stock */
+  --fs-out-of-stock: 24px;
+
+  /* every product specific page */
+
+  /* product description */
+  --ff-roboto: "Roboto", sans-serif;
+  --fw-product-description: 300;
+
+  /* product price */
+  --fs-product-price: 24px;
+  --fw-product-price: 700;
+
+  /* product  options */
+  --fs-product-options: 18px;
+  --ff-product-options: "Roboto Condensed", sans-serif;
+  --fw-product-options: 700;
+
+  /* product title */
+  --fs-product-title: 30px;
+  --fw-product-title: 600;
+
+
+  --fs-100: 1.125rem;
+  /*18px*/
+  --fs-200: 1.5rem;
+  /*24px*/
+  --fs-300: 1.875rem;
+  /*30px*/
+  --fs-400: 2.625rem;
+  /*42px*/
+}
+
+.product__description {
+  font-family: var(--ff-roboto);
+  font-weight: var(--fw-product-description);
+}
