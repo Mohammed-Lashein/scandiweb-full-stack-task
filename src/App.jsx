@@ -1,13 +1,12 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Product from './components/Product';
+import Navbar from './components/Navbar';
+import NavigationAndSelectedCategory from './components/NavigationAndSelectedCategory';
 
 function App() {
   return (
     <div>
-      App
-      <Product/>
+      <NavigationAndSelectedCategory/>
       </div>
   )
 }

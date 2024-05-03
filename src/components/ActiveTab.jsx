@@ -1,8 +1,12 @@
 import React from 'react'
+import { categories } from '../data/constants'
+
 
 class ActiveTab extends React.Component {
   render() {
-    <div>Active Tab</div>
+    return <div className='category-name'>
+      {categories[this.props.activeTabIndex]}
+    </div>
   }
 }
 

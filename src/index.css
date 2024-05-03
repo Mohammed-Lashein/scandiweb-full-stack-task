@@ -5,6 +5,10 @@
   starting with a capital or small letter doesn't matter . The font 
   will take effect anyway . */
 }
+body {
+  margin: 0;
+  padding: 0;
+}
 
 :root {
 
@@ -49,17 +53,92 @@
   --fw-product-title: 600;
 
 
-  --fs-100: 1.125rem;
   /*18px*/
-  --fs-200: 1.5rem;
+  --fs-100: 1.125rem;
   /*24px*/
-  --fs-300: 1.875rem;
+  --fs-200: 1.5rem;
   /*30px*/
-  --fs-400: 2.625rem;
+  --fs-300: 1.875rem;
   /*42px*/
+  --fs-400: 2.625rem;
+
+  --padding: 1rem;
+  --gap: 1rem;
+
+  --clr-primary: #5ECE7B;
+  --transition: color 0.2s ease-in-out;
 }
+
+/* general styles */
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding);
+  position: relative;
+  flex-wrap: wrap;
+  padding: 2rem 3rem;
+}
+/* .navbar .logo {
+  position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+.navbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: repeat(3,minmax(auto, 1fr));
+  gap: var(--gap);
+  margin: auto;
+}
+.navbar * {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+/* 
+
+
+
+
+    
+*/
+
+/* tabs */
+.tabs {
+  display: flex;
+  gap: var(--gap);
+}
+.tabs li {
+  /* padding-bottom: var(--padding); */
+  padding-bottom: 2rem;
+  cursor: pointer;
+  /* transition: var(--transition); */
+
+}
+.tabs li.active {
+  color: var(--clr-primary);
+  border-bottom: 3px solid var(--clr-primary);
+  transition: var(--transition);
+}
+
+
+
 
 .product__description {
   font-family: var(--ff-roboto);
   font-weight: var(--fw-product-description);
+}
+
+/* category name */
+.category-name {
+  padding-left: 2rem;
 }

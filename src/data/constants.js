@@ -1,0 +1,1 @@
+export const categories = ["Women", "Men", "Kids"]
