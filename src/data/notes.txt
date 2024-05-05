@@ -1,0 +1,3 @@
+- I wanted to mention here that at first, I didn't know what is the use of __typename in the data provided . It turned out that it is specific to GraphQL and it helps in some way . Excited to learn more about that later in the project ! 
+
+- The canda goose jacket has imgs in the galleryMod (Don't forget to change the name after testing the others )

@@ -1,0 +1,9 @@
+Here I will write the things that I have some concerns about in the
+design and thus I implemented it in a different way : 
+
+[1] In the ProductCard component, having a cart icon that appears on 
+hovering over the product cart is really annoying (at least to me) . 
+If I want to go to the product details page, then I will just click on 
+the card to get me to the requested page .
+But showing and hiding a cart icon isn't really a great user experience . 
+I will comment the code of the cart icon in each product cart, but I won't delete it as the design decision is not my responsibility so I have to head to the UI/UX team before taking any decision regarding the design. 

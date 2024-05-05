@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import Product from './components/Product';
-import Navbar from './components/Navbar';
 import NavigationAndSelectedCategory from './components/NavigationAndSelectedCategory';
+import ProductsContainer from './components/ProductsContainer';
 
 function App() {
   return (
     <div>
       <NavigationAndSelectedCategory/>
+      <ProductsContainer/>
       </div>
   )
 }
