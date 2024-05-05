@@ -2,6 +2,8 @@ import React from 'react'
 import Tabs from './Tabs'
 import cartLogoUrl from '../assets/cart.svg'
 import companyLogoUrl from '../assets/logo.svg'
+import { Link } from 'react-router-dom'
+
 
 class Navbar extends React.Component {
 	render() {
@@ -16,10 +18,12 @@ class Navbar extends React.Component {
       
       This component will re-render often, so it is better to isolate the code in it in a component as putting this code here will make all the children in the Navbar component re-render unnecessarily . So it is best to have Tabs component */}
 				<div className='logo'>
+					<Link to='/'>
 					<img
 						src={companyLogoUrl}
 						alt='logo'
 					/>
+					</Link>
 				</div>
 				<div>
 					<img

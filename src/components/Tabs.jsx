@@ -1,28 +1,29 @@
 import React from 'react'
-import { categories } from '../data/constants'
+import  ProductsContext  from '../context/ProductsContext';
 class Tabs extends React.Component {
 	constructor(props) {
 		super(props)
-		// this.state = { activeTabIndex: 0 }
 	}
-	// handleActiveTab = (activeTabIdx) => {
-	// 	// this.setState({activeTabIndex: activeTabIdx})
-	// }
 	render() {
+		let categories = [];
+		if (this.context) {
+			categories = this.context.data?.categories;
+		}
 		return (
 			<ul className='tabs'>
-				{categories.map((categoryName, i) => (
+				{categories?.map((category, i) => (
 					<li
 						className={this.props.activeTabIndex === i ? 'active' : ''}
-						key={categoryName}
+						key={category.name}
             onClick={() => this.props.handleActiveTab(i)}
 					>
-						{categoryName}
+						{category.name}
 					</li>
 				))}
 			</ul>
 		)
 	}
 }
+Tabs.contextType = ProductsContext
 
 export default Tabs
