@@ -20,21 +20,6 @@ class Product extends Component {
 		this.state = { currentImageIdx: 0, gallery: null }
 	}
 
-	handleCurrentImageIdxIncrement = () => {
-		if (this.state.currentImageIdx < gallery.length - 1) {
-			this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx + 1 }))
-		} else {
-			this.setState({ currentImageIdx: 0 })
-		}
-	}
-	handleCurrentImageIdxDecrement = () => {
-		if (this.state.currentImageIdx > 0) {
-			this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx - 1 }))
-		} else {
-			this.setState({ currentImageIdx: gallery.length - 1 })
-		}
-	}
-
 	setSpecificImage = (specifiedIdx) => {
 		this.setState({currentImageIdx: specifiedIdx})
 	}
@@ -55,6 +40,21 @@ class Product extends Component {
 		elements passing the condition, while find returns an element directly */
 		// console.log(SpecifiedProduct);
 
+		let handleCurrentImageIdxIncrement = () => {
+			if (this.state.currentImageIdx < SpecifiedProduct.gallery.length - 1) {
+				this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx + 1 }))
+			} else {
+				this.setState({ currentImageIdx: 0 })
+			}
+		}
+		let handleCurrentImageIdxDecrement = () => {
+			if (this.state.currentImageIdx > 0) {
+				this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx - 1 }))
+			} else {
+				this.setState({ currentImageIdx: SpecifiedProduct.gallery.length - 1 })
+			}
+		}
+
 		
 		return (
 			<>
@@ -63,15 +63,15 @@ class Product extends Component {
 				<div className='product-details-container__carousel-outer-container'>
 					<CarouselContainer
 						currentImageIdx={this.state.currentImageIdx}
-						handleCurrentImageIdxDecrement={this.handleCurrentImageIdxDecrement}
-						handleCurrentImageIdxIncrement={this.handleCurrentImageIdxIncrement}
+						handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
+						handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
 						setSpecificImage={this.setSpecificImage}
 						gallery={SpecifiedProduct && SpecifiedProduct.gallery}
 					/>
 					<ImageContainer
 						currentImageIdx={this.state.currentImageIdx}
-						handleCurrentImageIdxDecrement={this.handleCurrentImageIdxDecrement}
-						handleCurrentImageIdxIncrement={this.handleCurrentImageIdxIncrement}
+						handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
+						handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
 						gallery={SpecifiedProduct && SpecifiedProduct.gallery}
 					/>
 				</div>
