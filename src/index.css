@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 a {
   color: black;
   text-decoration: none;
@@ -50,8 +51,8 @@ a {
 
   /* product  options */
   --fs-product-options: 18px;
-  --ff-product-options: "Roboto Condensed", sans-serif;
-  --fw-product-options: 700;
+  --ff-roboto-condensed: "Roboto Condensed", sans-serif;
+  --fw-bold: 700;
 
   /* product title */
   --fs-product-title: 30px;
@@ -72,7 +73,7 @@ a {
 
   --clr-primary: #5ECE7B;
   --clr-primary-dark: #457a53;
-  --transition: color 0.2s ease-in-out;
+  --transition: all 0.2s ease-in-out;
 }
 
 /* general styles */
@@ -140,6 +141,12 @@ ul {
   color: var(--clr-primary);
   border-bottom: 3px solid var(--clr-primary);
   transition: var(--transition);
+  transition-property:  color;
+  /* since the transition if applied to the border causes a weird jump
+  in the UI, explicitly setting the transition property is a much better
+  approach, where we didn't need to define our custom transition and
+  used the global transition variable (so that maintainability is much
+  easier) and were also able to achieve the required target . */
 }
 
 
@@ -172,15 +179,18 @@ ul {
   column-gap: 2rem;
   row-gap: 1rem;
 }
+
 .product-card {
   width: 200px;
   min-height: 300px;
   padding: 1rem;
   transition: box-shadow 0.3s linear;
 }
+
 .product-card:hover {
   box-shadow: 5px 5px 5px rgb(174, 172, 172);
 }
+
 .product-card__img-container {
   position: relative;
 }
@@ -232,9 +242,160 @@ design-decisions.txt file .   */
   margin: 0;
 
 }
+
 .product-card__details__product-price {
   /* raleway, md, 18 */
   font-weight: var(--fw-medium);
   font-size: var(--fs-100);
   margin-top: 0.3rem;
+}
+
+/* product page */
+
+.product-details-container {
+  padding: 2rem;
+  padding-left: 12rem;
+  display: flex;
+  gap: 8rem;
+}
+
+.product-details-container__carousel-outer-container {
+  display: flex;
+  gap: 4rem;
+  /* half the gap of the product-details-container . This effect is 
+  appearing in the design .  */
+}
+
+.product-details-container__carousel-outer-container__imgs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-details-container__carousel-outer-container__imgs-container__image img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+.product-details-container__carousel-outer-container__imgs-container__image.active {
+  border: 1px solid black;
+}
+
+.product-details-container__carousel-outer-container__image-container img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+/* arrow left and arrow right stylings add them here */
+
+.product-details-container__carousel-outer-container__image-container {
+  position: relative;
+  align-self: flex-start;
+  /* aliging the image container to the beginning of the flexbox is 
+  very important as this will affect the appearance of the carousel 
+  arrows . Since by default the image container stretched to have same
+  height as the vertical carousel, this would affect the placing of the
+  arrows when we do the dimensions calculations */
+}
+.right-arrow,
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.right-arrow img,
+.left-arrow img {
+  width: 30px;
+  height: 30px;
+}
+.right-arrow {
+  right: 0;
+}
+.left-arrow {
+  left: 0;
+}
+
+.product-details-container__product-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+.product-details-container__product-description-container header {
+  font-weight: var(--fw-semiBold);
+  font-size: var(--fs-300);
+  text-transform: capitalize;
+}
+.product-details-container__product-description-container .product-details-label {
+  font-family: var(--ff-roboto-condensed);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-100);
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.product-details-container__product-description-container__product-size ul {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.product-details-container__product-description-container__product-size ul li, 
+.product-details-container__product-description-container__product-size ul li.active {
+  padding: 0.5rem 1rem;
+  border: 1px solid #292929;
+  color: #292929;
+  /* Use that color instead of just black as it is lighter than black */
+  transition: var(--transition);
+  text-align: center;
+  cursor: pointer;
+}
+
+.product-details-container__product-description-container__product-size ul li:hover,
+.product-details-container__product-description-container__product-size ul li.active {
+  color: white;
+  background-color: #292929;
+}
+
+
+.product-details-container__product-description-container__product-color ul {
+  display: flex;
+  gap: 0.3rem;
+}
+.product-details-container__product-description-container__product-color ul li {
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  /* The importance of this border is that when a color is chosen, it
+  will have an outline around it . But the outline should not be 
+  adhering to the edge of the element, so this white border will solve
+  this problem visually.   */
+  cursor: pointer;
+}
+
+.product-details-container__product-description-container__product-color ul li.active {
+  outline: 2px solid var(--clr-primary);
+}
+
+
+.product-details-container__product-description-container button {
+  color: white;
+  background-color: var(--clr-primary);
+  transition: background-color 0.2s linear;
+  /* width: 50px; */
+  padding: 15px 20px;
+  text-transform: uppercase;
+  font-weight: var(--fw-semiBold);
+  border: 1px solid var(--clr-primary);
+  cursor: pointer;
+}
+
+.product-details-container__product-description-container button:hover {
+  color: var(--clr-primary);
+  background-color: white;
+  border: 1px solid var(--clr-primary);
 }
