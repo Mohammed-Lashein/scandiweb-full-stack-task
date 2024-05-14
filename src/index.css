@@ -45,10 +45,6 @@ a {
   --ff-roboto: "Roboto", sans-serif;
   --fw-product-description: 300;
 
-  /* product price */
-  --fs-product-price: 24px;
-  --fw-product-price: 700;
-
   /* product  options */
   --fs-product-options: 18px;
   --ff-roboto-condensed: "Roboto Condensed", sans-serif;
@@ -378,7 +374,18 @@ design-decisions.txt file .   */
 }
 
 .product-details-container__product-description-container__product-color ul li.active {
+  border: none;
   outline: 2px solid var(--clr-primary);
+  /* border: 2px solid var(--clr-primary); */
+  /* using the outline property here is a better design decision since 
+  that in the figma file, the focus on the color is not inside the 
+  element's border but instead outside the element .  */
+
+}
+
+.product-details-container__product-description-container__product-price .product-price {
+  font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
 }
 
 

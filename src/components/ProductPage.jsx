@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom'
 import CarouselContainer from './CarouselContainer'
 import ImageContainer from './ImageContainer'
 import ProductDetails from './ProductDetails'
-import ProductsContext from '../context/ProductsContext';
-
+import ProductsContext from '../context/ProductsContext'
 
 const gallery = [
 	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
@@ -21,7 +20,7 @@ class Product extends Component {
 	}
 
 	setSpecificImage = (specifiedIdx) => {
-		this.setState({currentImageIdx: specifiedIdx})
+		this.setState({ currentImageIdx: specifiedIdx })
 	}
 
 	render() {
@@ -34,14 +33,14 @@ class Product extends Component {
 		But since this is the case, and the context value is available here,
 		I will extract the required gallery in the render method .*/
 
-		let SpecifiedProduct = this.context?.data?.products.find((product) => product.id === this.props.productId)
+		let specifiedProduct = this.context?.data?.products.find((product) => product.id === this.props.productId)
 		/* using the higher order function find here is better than filter,
 		since that filter returns an array containing the element or 
 		elements passing the condition, while find returns an element directly */
-		// console.log(SpecifiedProduct);
+		// console.log(specifiedProduct);
 
 		let handleCurrentImageIdxIncrement = () => {
-			if (this.state.currentImageIdx < SpecifiedProduct.gallery.length - 1) {
+			if (this.state.currentImageIdx < specifiedProduct.gallery.length - 1) {
 				this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx + 1 }))
 			} else {
 				this.setState({ currentImageIdx: 0 })
@@ -51,33 +50,32 @@ class Product extends Component {
 			if (this.state.currentImageIdx > 0) {
 				this.setState((prev) => ({ currentImageIdx: prev.currentImageIdx - 1 }))
 			} else {
-				this.setState({ currentImageIdx: SpecifiedProduct.gallery.length - 1 })
+				this.setState({ currentImageIdx: specifiedProduct.gallery.length - 1 })
 			}
 		}
 
-		
 		return (
 			<>
-			{
-				SpecifiedProduct && <div className='product-details-container'>
-				<div className='product-details-container__carousel-outer-container'>
-					<CarouselContainer
-						currentImageIdx={this.state.currentImageIdx}
-						handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
-						handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
-						setSpecificImage={this.setSpecificImage}
-						gallery={SpecifiedProduct && SpecifiedProduct.gallery}
-					/>
-					<ImageContainer
-						currentImageIdx={this.state.currentImageIdx}
-						handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
-						handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
-						gallery={SpecifiedProduct && SpecifiedProduct.gallery}
-					/>
-				</div>
-				<ProductDetails />
-			</div>
-			}
+				{specifiedProduct && (
+					<div className='product-details-container'>
+						<div className='product-details-container__carousel-outer-container'>
+							<CarouselContainer
+								currentImageIdx={this.state.currentImageIdx}
+								handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
+								handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
+								setSpecificImage={this.setSpecificImage}
+								gallery={specifiedProduct && specifiedProduct.gallery}
+							/>
+							<ImageContainer
+								currentImageIdx={this.state.currentImageIdx}
+								handleCurrentImageIdxDecrement={handleCurrentImageIdxDecrement}
+								handleCurrentImageIdxIncrement={handleCurrentImageIdxIncrement}
+								gallery={specifiedProduct && specifiedProduct.gallery}
+							/>
+						</div>
+						<ProductDetails product={specifiedProduct}/>
+					</div>
+				)}
 			</>
 		)
 	}

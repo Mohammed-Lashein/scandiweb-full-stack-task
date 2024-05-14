@@ -25,6 +25,7 @@ class App extends Component {
 	}
 
 	render() {
+		console.log("Dora and friends");
 		let productsLoaded = this.state.products
 		/* The productsLoaded variable existense is important so that we
 		can pass it in the context provider   */
