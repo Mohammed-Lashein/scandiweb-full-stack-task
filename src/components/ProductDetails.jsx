@@ -8,79 +8,54 @@ class ProductDetails extends Component {
 		this.state = { size: null, color: null }
 	}
 
-	setSelectedSize = (selectedSize) => {
-		this.setState({ size: selectedSize })
-		console.log(this.state)
-	}
-
 	render() {
 		const product = this.props.product
-		// console.log(this.props.apple);
-		/* It is good that trying to access a property that is not there in
-		the props doesn't throw an error but instead just returns 
-		undefined. This will be extremely benefecial when work on the 
-		attributes of each product .  */
+		let colors
+		let capacityOrSize
+		let radioChoices
+		// let colors, capacityOrSize, radioChoices = []
+		// console.log(colors);
+		// console.log(capacityOrSize);
+		/* The colors and capacityOrSize have the value undefined, after 
+		asking chat I found that what I did above was just initialing the 
+		variables without giving them value . Only radioChoices will get the
+		value . To give each variable the same value, I have to assign the 
+		values to them separately . */
+
+		if (product) {
+			product.attributes.map((attribute) => {
+				switch (attribute.name) {
+					case 'Color':
+						colors = attribute.items
+						break
+					case 'Capacity':
+					case 'Size':
+						capacityOrSize = [attribute.items, attribute.name]
+						/* Make this an obj and pass to it both the items and the 
+						label so that we can use it in the OptionDetails component */
+						break;
+					default:
+						radioChoices = [attribute.items, attribute.name]
+						break;
+				}
+			})
+		}
+
 		return (
 			<div className='product-details-container__product-description-container'>
 				<header>{product.name}</header>
 				<div className='product-details-container__product-description-container__product-size'>
-					{product.attributes.map(
-						(attribute) => {
-							switch (attribute.name) {
-								case 'Capacity':
-								case 'Size':
-									return (
-										<OptionsDetails
-											key={attribute.name}
-											productOptions={attribute.items}
-											labelName={attribute.name}
-										/>
-									)
-								case 'Color':
-									return (
-										<ColorDetails
-											colors={attribute.items}
-											key={attribute.name}
-										/>
-									)
-								default:
-									return <BooleanChoiceDetails key={attribute.name} />
-							}
-						}
-						// <li
-						// 	key={size}
-						// 	className={size === this.state.size ? 'active' : ''}
-						// 	onClick={() => this.setSelectedSize(size)}
-						// >
-						// 	{size}
-						// </li>
-					)}
+					<OptionsDetails productOptions={capacityOrSize} />
+					<ColorDetails colors={colors} />
+					<BooleanChoiceDetails options={radioChoices}/>
 				</div>
-				{/* <div className='product-details-container__product-description-container__product-color'>
-					<p className='product-details-label'>color</p>
-					<ul>
-						{colors.map((color) => (
-							<li
-								key={color}
-								style={{ backgroundColor: color }}
-								onClick={() => this.setSelectedColor(color)}
-								className={`${this.state.color === color ? 'active' : ''}`}
-							></li>
-						))}
-					</ul>
-				</div>
-				*/}
-
-				{/* Note that the prices are not in the attributes, so we need 
-				to handle them separately */}
-
 				<div className='product-details-container__product-description-container__product-price'>
 					<p className='product-details-label'>Price</p>
-					<p className='product-price'>$50</p>
+					<p className='product-price'>{product.prices[0].currency.symbol} {product.prices[0].amount}</p>
 				</div>
 				<button>Add to cart</button>
 				<div className='product-details-container__product-description-container__product-description'>
-					Great sneakers for everyday use
+					{product.description}
 				</div>
 			</div>
 		)

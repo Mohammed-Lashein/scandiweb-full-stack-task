@@ -331,8 +331,7 @@ design-decisions.txt file .   */
   font-weight: var(--fw-bold);
   font-size: var(--fs-100);
   text-transform: uppercase;
-  margin: 0;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .product-details-container__product-description-container__product-size ul {
@@ -386,6 +385,10 @@ design-decisions.txt file .   */
 .product-details-container__product-description-container__product-price .product-price {
   font-size: var(--fs-200);
   font-weight: var(--fw-bold);
+  margin: 0;
+  /* This element has a margin of 24px but I don't know where it did 
+  come from, so I will modify it here manually till I find its origin
+  in the css file  */
 }
 
 

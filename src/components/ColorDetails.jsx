@@ -9,22 +9,27 @@ class ColorDetails extends Component {
 		console.log(this.state)
 	}
 	render() {
-		console.log(this.props.colors);
 		return (
-			<div className='product-details-container__product-description-container__product-color'>
+			<>
+			{this.props.colors && <div className='product-details-container__product-description-container__product-color'>
 				<p className='product-details-label'>color</p>
 				<ul>
-					{this.props.colors.map((color) => (
-						<li
+				{this.props.colors.map((color) => {
+
+						return <li
 							key={color.displayValue}
 							style={{ backgroundColor: color.value }}
 							onClick={() => this.setSelectedColor(color)}
 							className={`${this.state.color === color ? 'active' : ''}`}
 						></li>
-					))}
+				}
+					)}
 				</ul>
-			</div>
+			</div>}
+			</>
 		)
+			
+		
 
 		{
 			/* <div className='product-details-container__product-description-container__product-color'>
