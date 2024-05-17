@@ -20,7 +20,11 @@ class ProductDetails extends Component {
 		asking chat I found that what I did above was just initialing the 
 		variables without giving them value . Only radioChoices will get the
 		value . To give each variable the same value, I have to assign the 
-		values to them separately . */
+		values to them separately .
+		
+		Or I can write : 
+		let colors = capacitySize = radioChoices = []
+		*/
 
 		if (product) {
 			product.attributes.map((attribute) => {

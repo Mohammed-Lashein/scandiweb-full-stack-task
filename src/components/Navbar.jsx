@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from './Tabs'
-import cartLogoUrl from '../assets/cart.svg'
-import companyLogoUrl from '../assets/logo.svg'
+import cartLogo from '../assets/cart.svg'
+import companyLogo from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
 import CartModal from './CartModal'
 
@@ -12,7 +12,6 @@ class Navbar extends React.Component {
 	}
 	setIsCartModalOpen = () => {
 		this.setState((prevState) => ({isCartModalOpen: !prevState.isCartModalOpen}))
-		console.log(this.state.isCartModalOpen);
 	}
 	render() {
 		// console.log(cartLogoUrl)
@@ -29,14 +28,14 @@ class Navbar extends React.Component {
 				<div className='logo'>
 					<Link to='/'>
 						<img
-							src={companyLogoUrl}
+							src={companyLogo}
 							alt='logo'
 						/>
 					</Link>
 				</div>
 				<div onClick={this.setIsCartModalOpen} className='navbar__cart-icon'>
 					<img
-						src={cartLogoUrl}
+						src={cartLogo}
 						alt='cart'
 					/>
 				</div>
@@ -55,13 +54,6 @@ export default Navbar
   Importing images like this won't work . The suggested way in the docs is to import asset as a url . Then vite would write the correct url to use the img starting from the root dir .
   
   We could also access the image manually without importing imgUrl, just make sure that you write the img path as an absolute path
-import NavigationAndSelectedCategory from './NavigationAndSelectedCategory';
-import CartModal from './CartModal';
 
-  Link to the article in vite docs : https://vitejs.dev/guide/assets
-
-
-
-
-
+	Link to the article in vite docs : https://vitejs.dev/guide/assets
 */

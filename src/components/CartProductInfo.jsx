@@ -31,7 +31,6 @@ class CartProductInfo extends Component {
       "Size"
     ]
     const colorOptions = [
-      [
         {
           value: "coral",
           displayValue: "coral"
@@ -44,8 +43,6 @@ class CartProductInfo extends Component {
           value: "green",
           displayValue: "green"
         },
-      ],
-      "Color"
     ]
     return (
       <div className='cart-container__product-container__product-info-container'>

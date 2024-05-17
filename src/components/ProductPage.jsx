@@ -5,14 +5,6 @@ import ImageContainer from './ImageContainer'
 import ProductDetails from './ProductDetails'
 import ProductsContext from '../context/ProductsContext'
 
-const gallery = [
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087',
-]
-
 class Product extends Component {
 	constructor(props) {
 		super(props)
@@ -28,13 +20,13 @@ class Product extends Component {
 		componentDidMount method, but the problem is that on the component
 		mount, the context was not available yet . And I don't understand 
 		why that happened even though in the App component I didn't render
-		the DOM before the fetching of the elements . 
+		the DOM before  fetching  the elements . 
 		
 		But since this is the case, and the context value is available here,
 		I will extract the required gallery in the render method .*/
 
 		let specifiedProduct = this.context?.data?.products.find((product) => product.id === this.props.productId)
-		/* using the higher order function find here is better than filter,
+		/* using the higher order function "find" here is better than filter,
 		since that filter returns an array containing the element or 
 		elements passing the condition, while find returns an element directly */
 		// console.log(specifiedProduct);

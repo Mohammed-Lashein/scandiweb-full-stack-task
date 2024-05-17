@@ -9,7 +9,7 @@ class HomePage extends Component {
     return (
       <>
       <ActiveTab activeTabIndex = {this.props.activeTabIndex}/>
-      <ProductsGallery/>
+      <ProductsGallery activeTabIndex={this.props.activeTabIndex}/>
       </>
     );
   }

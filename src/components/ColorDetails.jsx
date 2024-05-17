@@ -6,7 +6,6 @@ class ColorDetails extends Component {
 	}
 	setSelectedColor = (selectedColor) => {
 		this.setState({ color: selectedColor })
-		console.log(this.state)
 	}
 	render() {
 		return (
@@ -16,6 +15,7 @@ class ColorDetails extends Component {
 						<p className='product-details-label'>color</p>
 						<ul>
 							{this.props.colors.map((color) => {
+								console.log(color);
 								return (
 									<li
 										key={color.displayValue}

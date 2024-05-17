@@ -7,7 +7,6 @@ class OptionsDetails extends Component {
 
 	setSelectedSize = (selectedOption) => {
 		this.setState({ option: selectedOption })
-		console.log(this.state);
 	}
 
 	render() {

@@ -16,5 +16,4 @@ class CartProductQuantity extends Component {
     );
   }
 }
- 
 export default CartProductQuantity;
