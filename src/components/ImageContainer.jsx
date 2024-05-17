@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import rightArrow from "../assets/right-arrow.svg"
+import leftArrow from "../assets/left-arrow.svg"
 
 class ImageContainer extends Component {
 	constructor(props) {
@@ -23,7 +25,7 @@ class ImageContainer extends Component {
 					}}
 				>
 					<img
-						src='/src/assets/right-arrow.svg'
+						src={rightArrow}
 						alt='right arrow'
 					/>
 				</button>
@@ -37,7 +39,7 @@ class ImageContainer extends Component {
 					}}
 				>
 					<img
-						src='/src/assets/left-arrow.svg'
+						src={leftArrow}
 						alt='left arrow'
 					/>
 				</button>
