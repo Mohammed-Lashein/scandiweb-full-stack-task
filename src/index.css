@@ -110,13 +110,9 @@ ul {
   align-items: flex-start;
 }
 
-/* 
-
-
-
-
-    
-*/
+.navbar__cart-icon {
+  cursor: pointer;
+}
 
 /* tabs */
 .tabs {
@@ -137,7 +133,7 @@ ul {
   color: var(--clr-primary);
   border-bottom: 3px solid var(--clr-primary);
   transition: var(--transition);
-  transition-property:  color;
+  transition-property: color;
   /* since the transition if applied to the border causes a weird jump
   in the UI, explicitly setting the transition property is a much better
   approach, where we didn't need to define our custom transition and
@@ -250,8 +246,8 @@ design-decisions.txt file .   */
 
 .product-details-container {
   padding: 2rem;
-  padding-left: 12rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 8rem;
 }
 
@@ -273,6 +269,7 @@ design-decisions.txt file .   */
   height: 100px;
   cursor: pointer;
 }
+
 .product-details-container__carousel-outer-container__imgs-container__image.active {
   border: 1px solid black;
 }
@@ -294,6 +291,7 @@ design-decisions.txt file .   */
   height as the vertical carousel, this would affect the placing of the
   arrows when we do the dimensions calculations */
 }
+
 .right-arrow,
 .left-arrow {
   position: absolute;
@@ -304,14 +302,17 @@ design-decisions.txt file .   */
   background-color: transparent;
   cursor: pointer;
 }
+
 .right-arrow img,
 .left-arrow img {
   width: 30px;
   height: 30px;
 }
+
 .right-arrow {
   right: 0;
 }
+
 .left-arrow {
   left: 0;
 }
@@ -321,11 +322,13 @@ design-decisions.txt file .   */
   flex-direction: column;
   gap: var(--gap);
 }
+
 .product-details-container__product-description-container header {
   font-weight: var(--fw-semiBold);
   font-size: var(--fs-300);
   text-transform: capitalize;
 }
+
 .product-details-container__product-description-container .product-details-label {
   font-family: var(--ff-roboto-condensed);
   font-weight: var(--fw-bold);
@@ -339,7 +342,7 @@ design-decisions.txt file .   */
   gap: 0.3rem;
 }
 
-.product-details-container__product-description-container__product-size ul li, 
+.product-details-container__product-description-container__product-size ul li,
 .product-details-container__product-description-container__product-size ul li.active {
   padding: 0.5rem 1rem;
   border: 1px solid #292929;
@@ -361,6 +364,7 @@ design-decisions.txt file .   */
   display: flex;
   gap: 0.3rem;
 }
+
 .product-details-container__product-description-container__product-color ul li {
   width: 30px;
   height: 30px;
@@ -392,7 +396,8 @@ design-decisions.txt file .   */
 }
 
 
-.product-details-container__product-description-container button {
+.product-details-container__product-description-container button,
+button.place-order-btn {
   color: white;
   background-color: var(--clr-primary);
   transition: background-color 0.2s linear;
@@ -404,8 +409,94 @@ design-decisions.txt file .   */
   cursor: pointer;
 }
 
-.product-details-container__product-description-container button:hover {
+.product-details-container__product-description-container button:hover,
+.place-order-btn:hover {
   color: var(--clr-primary);
   background-color: white;
   border: 1px solid var(--clr-primary);
+}
+
+/* cart */
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: white;
+  width: 400px;
+  height: 500px;
+  overflow: scroll;
+  z-index: 5;
+  padding: 1rem;
+  position: absolute;
+  right: 10%;
+}
+
+.cart-container__product-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cart-container__product-container__product-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-container__product-container__product-info-container__product-price {
+  font-weight: var(--fw-medium);
+}
+
+.cart-container__product-container__qty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.increment-qty,
+.decrement-qty {
+  padding: 0.5rem 1rem;
+  border: 1px solid #292929;
+  color: #292929;
+  /* Use that color instead of just black as it is lighter than black */
+  transition: var(--transition);
+  text-align: center;
+  cursor: pointer;
+}
+
+.increment-qty:hover,
+.decrement-qty:hover {
+  color: white;
+  background-color: #292929;
+}
+
+/* cart modal */
+.cart-modal-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vw;
+  background-color: rgba(57, 55, 72, 0.3);
+  z-index: 5;
+}
+
+
+.cart-container__product-container__qty-container__qty-value {
+  font-weight: var(--fw-bold);
+}
+
+.cart-container__product-container__product-info-container__product-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  align-self: center;
+}
+
+.cart-container__product-container__total-price-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-container__product-container__total-price-container p {
+  font-weight: var(--fw-bold);
 }

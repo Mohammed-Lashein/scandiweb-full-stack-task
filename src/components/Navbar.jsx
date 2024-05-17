@@ -3,12 +3,22 @@ import Tabs from './Tabs'
 import cartLogoUrl from '../assets/cart.svg'
 import companyLogoUrl from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
+import CartModal from './CartModal'
 
 class Navbar extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {isCartModalOpen: false}
+	}
+	setIsCartModalOpen = () => {
+		this.setState((prevState) => ({isCartModalOpen: !prevState.isCartModalOpen}))
+		console.log(this.state.isCartModalOpen);
+	}
 	render() {
 		// console.log(cartLogoUrl)
 		return (
-			<nav className='navbar'>
+			<>
+						<nav className='navbar'>
 				<Tabs
 					activeTabIndex={this.props.activeTabIndex}
 					handleActiveTab={this.props.handleActiveTab}
@@ -24,13 +34,15 @@ class Navbar extends React.Component {
 						/>
 					</Link>
 				</div>
-				<div>
+				<div onClick={this.setIsCartModalOpen} className='navbar__cart-icon'>
 					<img
 						src={cartLogoUrl}
 						alt='cart'
 					/>
 				</div>
 			</nav>
+			{this.state.isCartModalOpen && <CartModal setIsCartModalOpen={this.setIsCartModalOpen}/>}
+			</>
 		)
 	}
 }
@@ -44,6 +56,7 @@ export default Navbar
   
   We could also access the image manually without importing imgUrl, just make sure that you write the img path as an absolute path
 import NavigationAndSelectedCategory from './NavigationAndSelectedCategory';
+import CartModal from './CartModal';
 
   Link to the article in vite docs : https://vitejs.dev/guide/assets
 
