@@ -8,39 +8,51 @@ import CartModal from './CartModal'
 class Navbar extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {isCartModalOpen: false}
+		this.state = { isCartModalOpen: false }
 	}
 	setIsCartModalOpen = () => {
-		this.setState((prevState) => ({isCartModalOpen: !prevState.isCartModalOpen}))
+		this.setState((prevState) => ({ isCartModalOpen: !prevState.isCartModalOpen }))
 	}
+	productsCount = 3;
 	render() {
 		// console.log(cartLogoUrl)
 		return (
 			<>
-						<nav className='navbar'>
-				<Tabs
-					activeTabIndex={this.props.activeTabIndex}
-					handleActiveTab={this.props.handleActiveTab}
-				/>
-				{/* I questioned myself about the benefit of this component and wanted to remove it, but I realized something very important . 
+				<nav className='navbar'>
+					<Tabs
+						activeTabIndex={this.props.activeTabIndex}
+						handleActiveTab={this.props.handleActiveTab}
+					/>
+					{/* I questioned myself about the benefit of this component and wanted to remove it, but I realized something very important . 
       
       This component will re-render often, so it is better to isolate the code in it in a component as putting this code here will make all the children in the Navbar component re-render unnecessarily . So it is best to have Tabs component */}
-				<div className='logo'>
-					<Link to='/'>
-						<img
-							src={companyLogo}
-							alt='logo'
-						/>
-					</Link>
-				</div>
-				<div onClick={this.setIsCartModalOpen} className='navbar__cart-icon'>
-					<img
-						src={cartLogo}
-						alt='cart'
-					/>
-				</div>
-			</nav>
-			{this.state.isCartModalOpen && <CartModal setIsCartModalOpen={this.setIsCartModalOpen}/>}
+					<div className='logo'>
+						<Link to='/'>
+							<img
+								src={companyLogo}
+								alt='logo'
+							/>
+						</Link>
+					</div>
+					<div className='navbar__cart-icon-container'>
+						<button
+							className='navbar__cart-icon-container__cart-icon'
+							onClick={this.setIsCartModalOpen}
+							data-testid='cart-btn'
+						>
+							<img
+								src={cartLogo}
+								alt='cart'
+							/>
+						</button>
+						{this.productsCount > 0 && (
+							<div className='navbar__cart-icon-container__products-count-bubble'>
+							{this.productsCount}
+							</div>
+						)}
+					</div>
+				</nav>
+				{this.state.isCartModalOpen && <CartModal setIsCartModalOpen={this.setIsCartModalOpen} />}
 			</>
 		)
 	}
