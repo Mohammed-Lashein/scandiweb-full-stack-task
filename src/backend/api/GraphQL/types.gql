@@ -1,0 +1,47 @@
+# === General Notes ===
+# __typename is added to the query and not to the types definition
+
+enum ProductCategories {
+	ALL
+	CLOTHES
+	TECH
+}
+type Category {
+	name: ProductCategories
+}
+
+type Product {
+	id: ID!
+	name: String
+	brand: String
+	category: ProductCategories
+	description: String
+	gallery: [String]
+	inStock: Boolean
+	price: Price
+	attributes: [AttributeSet]
+}
+
+type Price {
+	amount: Float
+	currency: Currency
+}
+
+type Currency {
+	label: String
+	symbol: String
+}
+
+type AttributeSet {
+	id: String
+	name: String
+	# Modify the below type so that it is text, maybe it could be "text"
+	type: String
+	items: [Attribute]
+}
+
+type Attribute {
+	displayValue: String
+	id: String
+	Value: String
+}

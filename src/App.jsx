@@ -22,6 +22,13 @@ class App extends Component {
 				this.setState({ products: data })
 				console.log(this.state.products)
 			})
+
+			// just training on cors
+		fetch('http://localhost:80/scandiweb-training-full-stack/src/backend/api/products.php')
+		.then((res) => res.json()
+		)
+		.then((res) => console.log(res)
+		)
 	}
 
 	render() {

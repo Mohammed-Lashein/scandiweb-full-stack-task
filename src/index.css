@@ -88,8 +88,9 @@ ul {
   justify-content: center;
   align-items: flex-start;
 }
-.navbar__cart-icon-container {
+.navbar__cart-icon-inner-container {
   position: relative;
+
 }
 .navbar__cart-icon-container__cart-icon {
   cursor: pointer;
@@ -104,7 +105,7 @@ ul {
   color: white;
   background-color: black;
   top: -10px;
-  right: 42%;
+  right: -5px;
   padding-bottom: 0.2rem;
   /* The padding bottom is important so that the productsCount is visually centered within the bubble .  */
 }

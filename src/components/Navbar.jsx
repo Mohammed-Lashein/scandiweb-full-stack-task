@@ -34,7 +34,20 @@ class Navbar extends React.Component {
 							/>
 						</Link>
 					</div>
-					<div className='navbar__cart-icon-container'>
+					{/* 
+					Why do we have outer and inner containers instead of just one container ?
+					=> The problem is with the count bubble . 
+					Since that the navbar is a flexbox, so the elements' width is changing . 
+
+					The problem arose with css where I had to position the count bubble . I couldn't set only 1 value for the right property
+					and I had to use a lot of media queries, which didn't even
+					achieve what I wanted . 
+
+					The solution : Wrap the count bubble in a div whose width will
+					be fixed, so styling the count bubble became easy . 
+					*/}
+					<div className='navbar__cart-icon-outer-container'>
+						<div className='navbar__cart-icon-inner-container'>
 						<button
 							className='navbar__cart-icon-container__cart-icon'
 							onClick={this.setIsCartModalOpen}
@@ -50,6 +63,7 @@ class Navbar extends React.Component {
 							{this.productsCount}
 							</div>
 						)}
+						</div>
 					</div>
 				</nav>
 				{this.state.isCartModalOpen && <CartModal setIsCartModalOpen={this.setIsCartModalOpen} />}
