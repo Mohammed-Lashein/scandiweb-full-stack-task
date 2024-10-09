@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { createContext } from 'react'
 
 
- const ProductsContext = React.createContext({})
-/*  I wrote the name in pascal case instead of camelCase since that it 
-is written that way in the legacy docs
- */
+const ProductsContext = createContext({})
+
 export default ProductsContext

@@ -1,20 +1,31 @@
 import React, { Component } from 'react'
 import ProductInCart from './ProductInCart'
 import TotalPrice from './TotalPrice'
+import CartItem from './cart/CartItem'
+import { formatCurrency } from '../utils'
+import { CartContext } from '../context/CartContext'
+
 class Cart extends Component {
+	static contextType = CartContext
+	constructor(props) {
+		super(props)
+		this.state = {
+			cartData: JSON.parse(sessionStorage.getItem("cartItems")) || []
+		}
+	}
 	render() {
-		const cartData = [1, 2]
+		const {totalCartItemsPrices} = this.context
 		return (
-				<div className='cart-container' onClick={(e) => e.stopPropagation()}>
-					<header>My Bag, 3 items</header>
-					{cartData.map((_, i) => (
-						<ProductInCart productData={cartData[i]} key={i} />
-					))}
-					<button className='place-order-btn'>
-          place order
-        </button>
-					<TotalPrice />
+			<div className='cart-container' onClick={(e) => e.stopPropagation()}>
+				{this.state.cartData.map((item) => (
+					<CartItem {...item} key={item.id}/>
+				))}
+
+				<div className='cart-container__product-container__total-price-container'>
+					<p>Total</p>
+					<p>{formatCurrency(totalCartItemsPrices)}</p>
 				</div>
+			</div>
 		)
 	}
 }

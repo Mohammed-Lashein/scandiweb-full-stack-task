@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import ColorDetails from './ColorDetails'
 import OptionsDetails from './OptionDetails'
 import BooleanChoiceDetails from './BooleanChoiceDetails'
+import { CartContext } from '../context/CartContext'
 class ProductDetails extends Component {
+	static contextType = CartContext
 	constructor(props) {
 		super(props)
 		this.state = { size: null, color: null }
@@ -10,6 +12,8 @@ class ProductDetails extends Component {
 
 	render() {
 		const product = this.props.product
+		console.log(product);
+		
 		let colors
 		let capacityOrSize
 		let radioChoices
@@ -41,6 +45,18 @@ class ProductDetails extends Component {
 			})
 		}
 
+		const {addItemToCart} = this.context
+		console.log(this.context);
+
+		const productDataPassedToCart = {
+			id: product.id,
+			name: product.name,
+			price: product.prices[0].amount,
+			img: product.gallery[0],
+			quantity: 1
+		}
+		
+
 		return (
 			<div className='product-details-container__product-description-container'>
 				<header>{product.name}</header>
@@ -53,7 +69,7 @@ class ProductDetails extends Component {
 					<p className='product-details-label'>Price</p>
 					<p className='product-price'>{product.prices[0].currency.symbol} {product.prices[0].amount}</p>
 				</div>
-				<button>Add to cart</button>
+				<button onClick={() => addItemToCart(productDataPassedToCart)}>Add to cart</button>
 				<div className='product-details-container__product-description-container__product-description'>
 					{product.description}
 				</div>

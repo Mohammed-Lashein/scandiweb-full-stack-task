@@ -3,8 +3,10 @@ import ProductCard from './ProductCard'
 import ProductsContext from '../context/ProductsContext'
 
 class ProductsGallery extends Component {
+	static contextType = ProductsContext
 	render() {
 		let products = []
+		console.log(this.context.data);
 		if (this.context.data) {
 			products = this.context.data.products
 		}
@@ -21,5 +23,4 @@ class ProductsGallery extends Component {
 		)
 	}
 }
-ProductsGallery.contextType = ProductsContext
 export default ProductsGallery
