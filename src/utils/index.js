@@ -1,5 +1,5 @@
 export function updateDataSource(updatedData) {
-  sessionStorage.setItem('cartItems', JSON.stringify(updatedData))
+  localStorage.setItem('cartItems', JSON.stringify(updatedData))
 }
 
 export function formatCurrency(price) {

@@ -10,21 +10,23 @@ class Cart extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			cartData: JSON.parse(sessionStorage.getItem("cartItems")) || []
+			cartData: JSON.parse(localStorage.getItem("cartItems")) || []
 		}
 	}
 	render() {
-		const {totalCartItemsPrices} = this.context
+		const {totalCartItemsPrices, totalCartItems} = this.context
 		return (
 			<div className='cart-container' onClick={(e) => e.stopPropagation()}>
 				{this.state.cartData.map((item) => (
 					<CartItem {...item} key={item.id}/>
 				))}
 
-				<div className='cart-container__product-container__total-price-container'>
+				{totalCartItems > 0 && (
+					<div className='cart-container__product-container__total-price-container'>
 					<p>Total</p>
 					<p>{formatCurrency(totalCartItemsPrices)}</p>
 				</div>
+				)}
 			</div>
 		)
 	}

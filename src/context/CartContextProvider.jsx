@@ -9,7 +9,7 @@ class CartContextProvider extends Component {
 		console.log(props)
 
 		this.state = {
-			cartItems: JSON.parse(sessionStorage.getItem('cartItems')) || [],
+			cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
 		}
 		/* 
     
@@ -43,15 +43,9 @@ class CartContextProvider extends Component {
 		}
 
 		if (!itemInCart) {
-			console.log('not in cart dude')
-			console.log(itemToAdd)
-
 			this.setState({cartItems: [...this.state.cartItems, itemToAdd]})
 			updateDataSource([...this.state.cartItems, itemToAdd])
-		}
-
-    console.log(this.state);
-    
+		}    
 	}
 
 	removeItemFromCart = (id) => {
@@ -95,23 +89,8 @@ class CartContextProvider extends Component {
 		updateDataSource(updatedItems)
 	}
 
-	/* 
-  value={{
-      addItemToCart: this.addItemToCart,
-      increaseItemQty: this.increaseItemQty,
-      decreaseItemQty: this.decreaseItemQty,
-      removeItemFromCart: this.removeItemFromCart,
-    }}
-  
-  */
-
 	render() {
-		const vals = {
-			banana: 'pudding',
-			cartItems: this.state.cartItems,
-		}
     const totalCartItemsPrices = this.state.cartItems.reduce((total, product) => {
-			console.log(product.price);
 			
       return total + +product.price * product.quantity
     }, 0)
@@ -125,6 +104,7 @@ class CartContextProvider extends Component {
 					decreaseItemQty: this.decreaseItemQty,
 					removeItemFromCart: this.removeItemFromCart,
           totalCartItemsPrices,
+					totalCartItems: this.state.cartItems.length
 				}}
 			>
 				{this.props.children}

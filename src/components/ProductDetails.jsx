@@ -12,8 +12,8 @@ class ProductDetails extends Component {
 
 	render() {
 		const product = this.props.product
-		console.log(product);
-		
+		console.log(product)
+
 		let colors
 		let capacityOrSize
 		let radioChoices
@@ -37,25 +37,24 @@ class ProductDetails extends Component {
 						capacityOrSize = [attribute.items, attribute.name]
 						/* Make this an obj and pass to it both the items and the 
 						label so that we can use it in the OptionDetails component */
-						break;
+						break
 					default:
 						radioChoices = [attribute.items, attribute.name]
-						break;
+						break
 				}
 			})
 		}
 
-		const {addItemToCart} = this.context
-		console.log(this.context);
+		const { addItemToCart } = this.context
+		console.log(this.context)
 
 		const productDataPassedToCart = {
 			id: product.id,
 			name: product.name,
 			price: product.prices[0].amount,
 			img: product.gallery[0],
-			quantity: 1
+			quantity: 1,
 		}
-		
 
 		return (
 			<div className='product-details-container__product-description-container'>
@@ -63,11 +62,13 @@ class ProductDetails extends Component {
 				<div className='product-details-container__product-description-container__product-size'>
 					<OptionsDetails productOptions={capacityOrSize} />
 					<ColorDetails colors={colors} />
-					<BooleanChoiceDetails options={radioChoices}/>
+					<BooleanChoiceDetails options={radioChoices} />
 				</div>
 				<div className='product-details-container__product-description-container__product-price'>
 					<p className='product-details-label'>Price</p>
-					<p className='product-price'>{product.prices[0].currency.symbol} {product.prices[0].amount}</p>
+					<p className='product-price'>
+						{product.prices[0].currency.symbol} {product.prices[0].amount}
+					</p>
 				</div>
 				<button onClick={() => addItemToCart(productDataPassedToCart)}>Add to cart</button>
 				<div className='product-details-container__product-description-container__product-description'>

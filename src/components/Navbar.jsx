@@ -15,7 +15,6 @@ class Navbar extends React.Component {
 		console.log(this.state.isCartModalOpen);
 	}
 	render() {
-		// console.log(cartLogoUrl)
 		return (
 			<>
 						<nav className='navbar'>
