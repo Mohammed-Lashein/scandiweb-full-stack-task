@@ -6,7 +6,6 @@ import { CartContext } from './CartContext'
 class CartContextProvider extends Component {
 	constructor(props) {
 		super(props)
-		console.log(props)
 
 		this.state = {
 			cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
@@ -25,8 +24,8 @@ class CartContextProvider extends Component {
 	addItemToCart = (itemToAdd) => {
   
 		let itemInCart = this.state.cartItems.find((item) => item.id === itemToAdd.id)
-
-		if (itemInCart) {
+		
+		if (itemInCart) {			
 			const updatedItems = this.state.cartItems.map((item) => {
 				if (item.id === itemToAdd.id) {
 					return {
@@ -56,9 +55,8 @@ class CartContextProvider extends Component {
 	}
 
 	increaseItemQty = (id) => {
-		const itemToUpdate = this.state.cartItems.find((item) => item.id === id)
 		const updatedItems = this.state.cartItems.map((item) => {
-			if (itemToUpdate.id === id) {
+			if (item.id === id) {
 				return {
 					...item,
 					quantity: item.quantity + 1,
@@ -73,9 +71,8 @@ class CartContextProvider extends Component {
 	}
 
 	decreaseItemQty = (id) => {
-		const itemToUpdate = this.state.cartItems.find((item) => item.id === id)
 		const updatedItems = this.state.cartItems.map((item) => {
-			if (itemToUpdate.id === id) {
+			if (item.id === id) {
 				return {
 					...item,
 					quantity: item.quantity - 1,
@@ -85,16 +82,21 @@ class CartContextProvider extends Component {
 			}
 		})
 
-		this.setState({ cartItems: updatedItems })
-		updateDataSource(updatedItems)
+		let updatedItemsWithQtyMoreThanZero = updatedItems.filter((item) => item.quantity > 0)
+
+		this.setState({ cartItems: updatedItemsWithQtyMoreThanZero })
+		updateDataSource(updatedItemsWithQtyMoreThanZero)
 	}
 
 	render() {
-    const totalCartItemsPrices = this.state.cartItems.reduce((total, product) => {
+    let totalCartItemsPrices = this.state.cartItems.reduce((total, product) => {
 			
       return total + +product.price * product.quantity
     }, 0)
-		console.log(totalCartItemsPrices);
+		totalCartItemsPrices = totalCartItemsPrices.toFixed(2)
+		let 	totalCartItems = this.state.cartItems.reduce((qty, item) => {
+			return qty + item.quantity
+		}, 0)
 		
 		return (
 			<CartContext.Provider
@@ -104,7 +106,8 @@ class CartContextProvider extends Component {
 					decreaseItemQty: this.decreaseItemQty,
 					removeItemFromCart: this.removeItemFromCart,
           totalCartItemsPrices,
-					totalCartItems: this.state.cartItems.length
+					totalCartItems,
+					cartItems: this.state.cartItems
 				}}
 			>
 				{this.props.children}

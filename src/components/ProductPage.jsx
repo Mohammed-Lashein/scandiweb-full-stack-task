@@ -4,15 +4,6 @@ import CarouselContainer from './CarouselContainer'
 import ImageContainer from './ImageContainer'
 import ProductDetails from './ProductDetails'
 import ProductsContext from '../context/ProductsContext'
-import { CartContext } from '../context/CartContext'
-
-const gallery = [
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
-	'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087',
-]
 
 class Product extends Component {
 	constructor(props) {

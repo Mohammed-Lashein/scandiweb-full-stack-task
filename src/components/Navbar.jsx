@@ -1,20 +1,23 @@
 import React from 'react'
 import Tabs from './Tabs'
-import cartLogoUrl from '../assets/cart.svg'
+import cartLogo from '../assets/cart.svg'
 import companyLogoUrl from '../assets/logo.svg'
 import { Link } from 'react-router-dom'
 import CartModal from './CartModal'
+import { CartContext } from '../context/CartContext'
 
 class Navbar extends React.Component {
+	static contextType = CartContext
 	constructor(props) {
 		super(props)
 		this.state = {isCartModalOpen: false}
 	}
 	setIsCartModalOpen = () => {
 		this.setState((prevState) => ({isCartModalOpen: !prevState.isCartModalOpen}))
-		console.log(this.state.isCartModalOpen);
 	}
 	render() {
+		const {totalCartItems} = this.context
+		
 		return (
 			<>
 						<nav className='navbar'>
@@ -33,12 +36,25 @@ class Navbar extends React.Component {
 						/>
 					</Link>
 				</div>
-				<div onClick={this.setIsCartModalOpen} className='navbar__cart-icon'>
-					<img
-						src={cartLogoUrl}
-						alt='cart'
-					/>
-				</div>
+				<div className='navbar__cart-icon-outer-container'>
+            <div className='navbar__cart-icon-inner-container'>
+            <button
+              className='navbar__cart-icon-container__cart-icon'
+              onClick={this.setIsCartModalOpen}
+              data-testid='cart-btn'
+            >
+              <img
+                src={cartLogo}
+                alt='cart'
+              />
+            </button>
+            {totalCartItems > 0 && (
+              <div className='navbar__cart-icon-container__products-count-bubble'>
+              {totalCartItems}
+              </div>
+            )}
+            </div>
+          </div>
 			</nav>
 			{this.state.isCartModalOpen && <CartModal setIsCartModalOpen={this.setIsCartModalOpen}/>}
 			</>
@@ -56,6 +72,7 @@ export default Navbar
   We could also access the image manually without importing imgUrl, just make sure that you write the img path as an absolute path
 import NavigationAndSelectedCategory from './NavigationAndSelectedCategory';
 import CartModal from './CartModal';
+import { CartContext } from '../context/CartContext';
 
   Link to the article in vite docs : https://vitejs.dev/guide/assets
 

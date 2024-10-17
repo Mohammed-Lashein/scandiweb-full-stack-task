@@ -46,7 +46,6 @@ class ProductDetails extends Component {
 		}
 
 		const { addItemToCart } = this.context
-		console.log(this.context)
 
 		const productDataPassedToCart = {
 			id: product.id,
